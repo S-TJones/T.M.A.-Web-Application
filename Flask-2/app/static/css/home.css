@@ -1,0 +1,65 @@
+ul {
+    list-style: none;
+}
+
+.homediv {
+    display: grid;
+    list-style: none;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.5%;
+    margin-top: 20%;
+}
+
+.rightside_home {
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+    border: solid 1px rgb(185, 184, 184);
+    border-radius: 5px;
+    padding: 10%;
+}
+
+.rightside_home p {
+    padding-bottom: 30px;
+}
+
+#sidepic {
+    align-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#logreg {
+    /* width: 50%; */
+    height: 100%;
+    /* margin: 5%; */
+    background-color: white;
+    border: solid 1px rgb(185, 184, 184);
+    border-radius: 5px;
+}
+
+.appname {
+    font-family: URW Chancery L, cursive;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.applogo {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+
+.buttons {
+    display: grid;
+    list-style: none;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4%;
+}
+
+#register_button {
+    background-color: rgb(126, 211, 33);
+}
+
+#login_button {
+    background-color: rgb(74, 144, 226);
+}
