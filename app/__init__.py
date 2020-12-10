@@ -8,7 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask import render_template
 app = Flask(__name__)
 
-SQLALCHEMY_DATABASE_URI = "postgres://tjftrjrivugxxj:4317e7d1952b845ffb995bb61b2cc86c6056ddfd655e7586ed548c7b032a4010@ec2-54-85-13-135.compute-1.amazonaws.com:5432/daqc95jtc3j6st"
+SQLALCHEMY_DATABASE_URI = "postgres://tdkwgwxevxwoun:019a4b48c47fc500662143fac01be4105f79c8ba2dce0c3f62f92e9eaa6ec901@ec2-35-169-184-61.compute-1.amazonaws.com:5432/d6ie4440vgoo3j"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 UPLOAD_FOLDER = "./app/static/uploads"
 SECRET_KEY = 'Sup3r$3cretkey'
