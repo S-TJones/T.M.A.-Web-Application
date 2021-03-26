@@ -8,13 +8,15 @@ from flask import flash, session, abort, send_from_directory
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('home.html')
+    return "Home Page"
+    # return render_template('home.html')
 
 
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="S~Jones")
+    return "ABOUT Page"
+    # return render_template('about.html', name="S~Jones")
 
 ###
 # The functions below should be applicable to all Flask apps.

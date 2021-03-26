@@ -1,51 +1,149 @@
-*, ::before, ::after {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* Global Stuff */
 :root {
-    --white: #ffffff;
-    --black: #000000;
-    --background-color: #aeaeae;
-    --primary-color: rgb(255, 255, 50);
+  --white: #ffffff;
+  --black: #000000;
+  --background-color: #e7e7e7;
+  --primary-color: rgb(245, 245, 12);
+  --complement-color: #9733ff;
 }
 
 /* Body Section */
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--background-color);
-    color: var(--black);
-    font-family: 'Courier New', Courier, monospace;
-    line-height: 1.6rem;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
+  color: var(--black);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* line-height: 1.6rem; */
 }
 
 /* Header Section */
 header {
-    display: flex;
-    flex-direction: row;
-    height: 100px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 20px;
 }
 
 /* Other Styles in the Header */
 header li {
-    list-style: none;
+  list-style: none;
 }
 
 header a {
-    text-decoration: none;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+header nav {
+  margin-left: auto;
+}
+
+header ul {
+  display: flex;
 }
 
 /* Main Section */
 main {
-    min-height: calc(100vh - calc(200px));
+  min-height: calc(100vh - calc(100px));
 }
 
 /* Other Styles in the Main */
+#main-content {
+  height: fit-content;
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+}
+
+.left,
+.right,
+#about-app,
+#reviews {
+  margin: 50px;
+  padding: 20px;
+  border: solid 1px var(--black);
+}
+
+.left {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+}
+
+.left h1 {
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 0.9em;
+}
+
+.prompt {
+  margin: 30px 0px;
+  font-size: 1.5rem;
+}
+
+.right img {
+  padding: 5px;
+  border: solid 1px red;
+}
+
+.base {
+  height: 80px;
+  min-width: 300px;
+  margin-top: 10px;
+  border: solid 1px green;
+  column-count: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.base p {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.base > img {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+#about-app {
+  background-color: aqua;
+}
+
+#reviews {
+  background-color: rgb(0, 248, 12);
+}
 
 /* Footer Section */
 footer {
-    height: 100px;
+  height: 40px;
+  background-color: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > p {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+/* Other Styles */
+.special {
+  color: var(--complement-color);
 }
