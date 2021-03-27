@@ -7,13 +7,23 @@
     
     <title>Task-Management-App</title>
 
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../static/css/base.css">
     <script src="https://kit.fontawesome.com/238a67abd4.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <img src="#" alt="Website Logo">
+        <div class="logo">
+            <!-- <i class="fas fa-tasks"></i> -->
+            <h3>Time to Move</h3>
+        </div>
 
+        <input type="checkbox" name="burger-toggle" id="burger-toggle" class="burger-toggle">
+        <label for="burger-toggle">
+            <div id="open" class="menu"><i class="fas fa-bars"></i></div>
+            <div id="close" class="menu"><i class="fas fa-times"></i></div>
+        </label>
+        
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
