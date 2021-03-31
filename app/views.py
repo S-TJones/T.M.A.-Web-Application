@@ -1,28 +1,62 @@
 
 import os
-from app import app
+from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for
-from flask import flash, session, abort, send_from_directory
+from flask import flash, session, abort
+from flask_login import login_user, logout_user, current_user, login_required
+from flask.helpers import send_from_directory
+from werkzeug.security import check_password_hash
 
 # Routes
+
+
 @app.route('/')
 def home():
     """Render website's home page."""
-    return "Home Page"
-    # return render_template('home.html')
+    # return "Hello World"
+    return render_template('home.html')
 
 
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return "ABOUT Page"
-    # return render_template('about.html', name="S~Jones")
+    return render_template('about.html')
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+
+    return "Log in"
+
+
+@app.route('/logout')
+def logout():
+
+    return "Logged Out"
+
+# Helper Function -----------------------------------
+# Python script for iterating over files in a specific directory
+
+
+# def get_uploaded_images():
+
+#     file_list = list()
+#     rootdir = os.path.join(app.config['UPLOAD_FOLDER'])
+
+#     for subdir, dirs, files in os.walk(rootdir):
+
+#         for file in files:
+#             file_list.append(file)
+
+#     return file_list
 
 ###
 # The functions below should be applicable to all Flask apps.
 ###
 
 # Display Flask WTF errors as Flash messages
+
+
 def flash_errors(form):
     for field, errors in form.errors.items():
         for error in errors:
@@ -56,6 +90,7 @@ def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
 
-#-----------------------------------------------------
+
+# -----------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")

@@ -15,4 +15,4 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 app.config.from_object(Config)
-from app import views, models
+from app import views
