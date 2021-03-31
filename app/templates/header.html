@@ -1,0 +1,25 @@
+
+
+<div class="logo">
+    <h3>Time to Move</h3>
+</div>
+
+<input type="checkbox" name="burger-toggle" id="burger-toggle" class="burger-toggle">
+<label for="burger-toggle">
+    <div id="open" class="menu"><i class="fas fa-bars"></i></div>
+    <div id="close" class="menu"><i class="fas fa-times"></i></div>
+</label>
+
+<nav>
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        {# if not session.logged_in #}
+            <li><a class="in-out" href="{{ url_for('login') }}">Login</a></li>
+            <li><a class="in-out" href="{{ url_for('signup') }}">Sign Up</a></li>
+        {# else #}
+            <li><a class="in-out" href="{{ url_for('logout') }}">Log Out</a></li>
+        {# endif #}
+    </ul>
+</nav>
+

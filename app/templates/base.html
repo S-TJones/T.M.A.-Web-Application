@@ -7,92 +7,28 @@
     
     <title>Task-Management-App</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/warning.css') }}">
     <script src="https://kit.fontawesome.com/238a67abd4.js" crossorigin="anonymous"></script>
+
+    {% block css %} {% endblock %}
 </head>
 <body>
     <header>
-        <div class="logo">
-            <!-- <i class="fas fa-tasks"></i> -->
-            <h3>Time to Move</h3>
-        </div>
-
-        <input type="checkbox" name="burger-toggle" id="burger-toggle" class="burger-toggle">
-        <label for="burger-toggle">
-            <div id="open" class="menu"><i class="fas fa-bars"></i></div>
-            <div id="close" class="menu"><i class="fas fa-times"></i></div>
-        </label>
-        
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a class="in-out" href="#">Login</a></li>
-                <li><a class="in-out" href="#">Sign Up</a></li>
-            </ul>
-        </nav>
+        {% include "header.html" %}
     </header>
 
     <main>
-        <section id="main-content">
+        {% include 'flash_messages.html' %}
 
-            <div class="left">
-                <div class="top">
-                    <h1>Join the <span class="special">T.M.A.</span> Community</h1>
-                    <p class="prompt">
-                        Any person whose large part of their work day is consumed by managing simple tasks can opt for "Time To Move".
-                    </p>
-                    <p class="catch-phrase">
-                        Keep up with all the tasks you need to get done.
-                    </p>
-                </div>
-            
-                <div class="base">
-                    <p>Download now for Free.</p>
-                    <img src="../static/images/google-play-icon-transparent-6.png" alt="Google Play Button">
-                </div>
-
-                <div class="other-links">
-                    <a href="#about-app" class="learn-more">
-                        Learn More 
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <a href="../templates/signup.html" class="learn-more">
-                        Sign Up 
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
-            
-            </div>
-
-            <div class="right">
-                <img src="../static/images/undraw_chore_list_iof3.svg" alt="Image of users using the Task-Management-App">
-            </div>
-
-        </section>
-
-        <section id="about-app">
-            <p>
-                Due to the quarantine effect, many people have gotten quite lazy. Moreover, for many persons it may not be easy for everyone to adjust to the online environment. I’m sure even some of us  have had days where Bruno Mars’, “Lazy Song” could have been our theme song, as we went the whole day and did nothing but sleep, eat and watch tv. 
-            </p>
-            <p>
-                Now, we aren’t saying those kinds of days are bad, but sometimes we have those days when we want to be productive and that’s where this app comes in.
-            </p>
-            <p>
-                Our App, “Time To Move”, aims to act as a personal assistant which helps us to get or maintain a healthy lifestyle, have those satisfyingly productive days and still allow time to eat and watch our favourite series or anime.
-            </p>
-        </section>
-
-        <section id="reviews">
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni maiores placeat illum iste at debitis quos molestias possimus sint, pariatur soluta eaque modi consequatur vel provident! Corrupti nihil voluptates odit atque hic laborum minima commodi. Nostrum a, dolorem excepturi recusandae obcaecati, blanditiis libero ea, incidunt voluptas magni deserunt cumque.
-            </p>
-        </section>
+        {% block main %} {% endblock %}
     </main>
 
     <footer>
         <p> JHS Collaborate | Copyright &copy; 2021</p>
     </footer>
+
+    {% block js %} {% endblock %}
 </body>
 </html>

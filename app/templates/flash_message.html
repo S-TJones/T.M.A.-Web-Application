@@ -1,0 +1,14 @@
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    
+    {% if messages %}
+
+        {% for category, message in messages %}
+            <div class="pop-up warning-{{ category }}">
+                <p> {{ message }} </p>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}

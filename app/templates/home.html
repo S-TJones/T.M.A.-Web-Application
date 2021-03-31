@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <section id="main-content">
+
+        <div class="left">
+            <div class="top">
+                <h1>Join the <span class="special">T.M.A.</span> Community</h1>
+                <p class="prompt">
+                    Any person whose large part of their work day is consumed by managing simple tasks can opt for "Time To Move".
+                </p>
+                <p class="catch-phrase">
+                    Keep up with all the tasks you need to get done.
+                </p>
+            </div>
+        
+            <div class="base">
+                <p>Download now for Free.</p>
+                <img src="{{ url_for('static', filename='images/google-play-icon-transparent-6.png') }}" alt="Google Play Button">
+            </div>
+
+            <div class="other-links">
+                <a href="#about-app" class="learn-more">
+                    Learn More 
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <a href="{{ url_for('signup') }}" class="learn-more">
+                    Sign Up 
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        
+        </div>
+
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/undraw_chore_list_iof3.svg') }}" alt="Image of users using the Task-Management-App">
+        </div>
+
+    </section>
+
+    <section id="about-app">
+        <h2>
+            Why choose <span class="special">'Time to Move'</span> ?
+        </h2>
+        <p class="col-1">
+            Due to the quarantine effect, many people have gotten quite lazy. Moreover, for many persons it may not be easy for everyone to adjust to the online environment. I’m sure even some of us  have had days where Bruno Mars’, “Lazy Song” could have been our theme song, as we went the whole day and did nothing but sleep, eat and watch tv. 
+        </p>
+        <p class="col-2">
+            Now, we aren’t saying those kinds of days are bad, but sometimes we have those days when we want to be productive and that’s where this app comes in.
+            <br>
+            Our App, “Time To Move”, aims to act as a personal assistant which helps us to get or maintain a healthy lifestyle, have those satisfyingly productive days and still allow time to eat and watch our favourite series or anime.
+        </p>
+    </section>
+
+    <section id="reviews">
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni maiores placeat illum iste at debitis quos molestias possimus sint, pariatur soluta eaque modi consequatur vel provident! Corrupti nihil voluptates odit atque hic laborum minima commodi. Nostrum a, dolorem excepturi recusandae obcaecati, blanditiis libero ea, incidunt voluptas magni deserunt cumque.
+        </p>
+    </section>
+
+{% endblock %}
+
+{% block js %} {% endblock %}
