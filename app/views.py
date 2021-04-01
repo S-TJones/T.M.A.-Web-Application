@@ -1,11 +1,13 @@
 
 import os
-from app import app, db, login_manager
+from app import app, db , login_manager
 from flask import render_template, request, redirect, url_for
 from flask import flash, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.helpers import send_from_directory
 from werkzeug.security import check_password_hash
+from app.forms import SignUpForm, LoginForm
+from app.models import User
 
 # Routes
 
@@ -23,16 +25,85 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/reviews/')
+def review():
+    """Render the website's review page."""
+    return render_template('reviews.html')
+
+
+@app.route('/signup/')
+def signup():
+    """Render the website's signup page."""
+
+    # If a user that already signed in loads this page...
+    if current_user.is_authenticated:
+        # ...then redirect them to home page
+        flash("You are already logged in.", "warning-good")
+        return redirect( url_for('home') )
+
+    return render_template('signup.html')
+
+
+@app.route('/login/', methods=['POST', 'GET'])
 def login():
 
-    return "Log in"
+    # If a user that already signed in loads this page...
+    if current_user.is_authenticated:
+        # ...then redirect them to home page
+        flash("You are already logged in.", "warning-good")
+        return redirect( url_for('home') )
+
+    # Create the form
+    login_form = LoginForm()
+
+    # Check for entered data
+    if request.method == "POST":
+        if form.validate_on_submit():
+            
+            email = form.email.data
+            password = form.password.data
+
+            user = User.query.filter_by(email=email).first()
+            
+            # Validate the fields
+            if user is not None and check_password_hash(user.password, password):
+                
+                login_user(user)
+
+                flash('Logged in successfully.', 'success')
+                return redirect( url_for('dashboard') )
+            else:
+                flash('Email or Password is incorrect.', 'danger')
+                return redirect( url_for("login") )
+
+        else:
+            flash_errors(form)
+
+    return render_template('login.html', form=login_form)
 
 
-@app.route('/logout')
+@app.route('/logout/')
+@login_required
 def logout():
+    logout_user()
 
-    return "Logged Out"
+    flash("You have: Logged Out", "warning-good")
+
+    return redirect(url_for('home'))
+
+
+# user_loader callback. This callback is used to reload the user object from
+# the user ID stored in the session
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+@app.route('/dashboard/')
+@login_required
+def dashboard():
+    """Render the website's dashboard page."""
+    return render_template('dashboard.html')
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory
@@ -54,10 +125,10 @@ def logout():
 # The functions below should be applicable to all Flask apps.
 ###
 
-# Display Flask WTF errors as Flash messages
-
 
 def flash_errors(form):
+    # Display Flask WTF errors as Flash messages
+
     for field, errors in form.errors.items():
         for error in errors:
             flash(u"Error in the %s field - %s" % (
