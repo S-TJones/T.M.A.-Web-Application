@@ -14,12 +14,12 @@
     <ul>
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
-        {# if not session.logged_in #}
+        {% if current_user.is_authenticated %}
+            <li><a class="in-out" href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
             <li><a class="in-out" href="{{ url_for('login') }}">Login</a></li>
             <li><a class="in-out" href="{{ url_for('signup') }}">Sign Up</a></li>
-        {# else #}
-            <li><a class="in-out" href="{{ url_for('logout') }}">Log Out</a></li>
-        {# endif #}
+        {% endif %}
     </ul>
 </nav>
 

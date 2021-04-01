@@ -14,23 +14,21 @@
 
     <section class="right">
         <form action="{{ url_for('login') }}" method="POST">
-            {#{ form.csrf_token }#}
+            {{ form.csrf_token }}
 
             <h3>Login</h3>
     
             <div class="input-pair">
     
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email"
-                    placeholder="Enter email"/>
+                {{ form.email(id='email', placeholder='Enter email') }}
     
             </div>
     
             <div class="input-pair">
     
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password"
-                    placeholder="Enter password"/>
+                {{ form.password(id='password', placeholder='Enter password') }}
     
             </div>
     

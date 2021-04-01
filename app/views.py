@@ -31,7 +31,7 @@ def review():
     return render_template('reviews.html')
 
 
-@app.route('/signup/')
+@app.route('/signup/', methods=['POST', 'GET'])
 def signup():
     """Render the website's signup page."""
 
@@ -41,7 +41,45 @@ def signup():
         flash("You are already logged in.", "warning-good")
         return redirect( url_for('home') )
 
-    return render_template('signup.html')
+    # Create the form
+    signup_form = SignUpForm()
+
+    if request.method == "POST":
+        if signup_form.validate_on_submit():
+            
+            f_name = signup_form.first_name.data
+            l_name = signup_form.last_name.data
+            email = signup_form.email.data
+            pass1 = signup_form.password1.data
+            pass2 = signup_form.password2.data
+
+            user = User.query.filter_by(email=email).first()
+
+            # Verifying data
+            if user:
+                flash('Email already exists.', category='error')
+            elif len(email) < 4:
+                flash('Email must be greater than 3 characters.', category='error')
+            elif len(f_name) < 2:
+                flash('First name must be greater than 1 character.', category='error')
+            elif len(l_name) < 2:
+                flash('Last name must be greater than 1 character.', category='error')
+            elif pass1 != pass2:
+                flash('Passwords don\'t match.', category='error')
+            elif len(pass1) < 7:
+                flash('Password must be at least 7 characters.', category='error')
+            else:
+                new_user = User(f_name, l_name, email, pass1)
+                
+                db.session.add(new_user)
+                db.session.commit()
+
+                login_user(new_user, remember=True)
+
+                flash('Account created!', category='success')
+                return redirect( url_for('home') )
+
+    return render_template('signup.html', form=signup_form)
 
 
 @app.route('/login/', methods=['POST', 'GET'])
@@ -58,10 +96,10 @@ def login():
 
     # Check for entered data
     if request.method == "POST":
-        if form.validate_on_submit():
+        if login_form.validate_on_submit():
             
-            email = form.email.data
-            password = form.password.data
+            email = login_form.email.data
+            password = login_form.password.data
 
             user = User.query.filter_by(email=email).first()
             
@@ -77,7 +115,7 @@ def login():
                 return redirect( url_for("login") )
 
         else:
-            flash_errors(form)
+            flash_errors(login_form)
 
     return render_template('login.html', form=login_form)
 
