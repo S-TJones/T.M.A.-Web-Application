@@ -11,7 +11,7 @@
 /* Global Stuff */
 :root {
   --white: #ffffff;
-  --black: #000000;
+  --black: #25292b;
   --background-color: #e7e7e7;
   --light-gray: #f1f1f1;
   --dar-gray: #cecece;
@@ -145,7 +145,7 @@ main > h1 {
   text-align: center;
 }
 
-.base > img {
+.base img {
   width: 150px;
   height: 150px;
   margin-right: 10px;
