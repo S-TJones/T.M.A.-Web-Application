@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <section class="application">
+        <h4>Unfortunately...</h4>
+        <p>
+            The application isn't on the Play Store.
+            <i class="far fa-frown"></i>
+            <br>
+            But, the application can be found on Github <a href="https://github.com/S-TJones/SWEN3001---Android-App">here</a>.
+        </p>
+
+    </section>
+
+{% endblock %}
+
+{% block js %} {% endblock %}
