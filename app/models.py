@@ -32,4 +32,14 @@ class User(db.Model):
             return str(self.id)  # python 3 support
 
     def __repr__(self):
-        return '<User %r>' % (self.email)
+        # return '<User %r>' % (self.email)
+        return f'<User {self.first_name} {self.last_name} {self.email} {self.password}>'
+
+    
+# Review
+class Review(db.Model):
+    uid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(255))
+    rating = db.Column(db.Integer)
+    
