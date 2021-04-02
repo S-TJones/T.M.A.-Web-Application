@@ -1,11 +1,103 @@
 
 {% extends "base.html" %}
 
-{% block css %} {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
 
 {% block main %}
 
-    <h1>About</h1>
-    <p>Work in progress...</p>
+    <h1>About Us</h1>
+
+    <section class="partner-section">
+        <h3>Meet the team</h3>
+
+        <div class="partners">
+            <div class="team">
+                <div class="card-vertical">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Shemar Jones</h4>
+                    <a href="https://github.com/S-TJones">
+                        <i class="fab fa-github"></i>
+                        S-TJones
+                    </a>
+                </div>
+                <div class="card-vertical">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Member 2</h4>
+                    <a href="https://github.com/Georgina1998">
+                        <i class="fab fa-github"></i>
+                        Georgina1998
+                    </a>
+                </div>
+                <div class="card-vertical">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Joshua Jhonson</h4>
+                    <a href="https://github.com/PrinceCarryan">
+                        <i class="fab fa-github"></i>
+                        PrinceCarryan
+                    </a>
+                </div>
+                <div class="card-vertical">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Lois-Anne Hall</h4>
+                    <a href="https://github.com/Lois-Anne">
+                        <i class="fab fa-github"></i>
+                        Lois-Anne
+                    </a>
+                </div>
+                <div class="card-vertical">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Member 5</h4>
+                    <a href="https://github.com/Dash000">
+                        <i class="fab fa-github"></i>
+                        Dash000
+                    </a>
+                </div>
+            </div>
+
+            <div class="special-mentions">
+                <div class="card-horizontal">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Yannick Lynfatt</h4>
+                    <a href="https://github.com/ylynfatt">
+                        <i class="fab fa-github"></i>
+                        ylynfatt
+                    </a>
+                </div>
+                <div class="card-horizontal">
+                    <img src="../static/images/undraw_collaborators_prrw.svg" alt="Team Member Photo">
+                    <h4>Jantae Leckie</h4>
+                    <a href="https://github.com/JantaeLeckie">
+                        <i class="fab fa-github"></i>
+                        JantaeLeckie
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation">
+
+        <h3>Have a look at our Presentation for the app</h3>
+
+        <div class="limit">
+            <div class="google-slides-container">
+                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSJsV1ijCI9tZeaPls_aLjuShOS5PFpuRbFmgCLObEuVs5znvbrMeECEG-hcGZFdhrCjTiYGINSQUDK/embed?start=false&loop=false&delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="application">
+        <h4>Unfortunately...</h4>
+        <p>
+            The application isn't on the Play Store.
+            <i class="far fa-frown"></i>
+            <br>
+            But, the application can be found on Github <a href="https://github.com/S-TJones/SWEN3001---Android-App">here</a>.
+        </p>
+
+    </section>
 
 {% endblock %}
