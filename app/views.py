@@ -1,6 +1,6 @@
 
 import os
-from app import app, db , login_manager
+from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for
 from flask import flash, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
@@ -31,6 +31,12 @@ def review():
     return render_template('reviews.html')
 
 
+@app.route('/download/')
+def download():
+    """Render the website's application download page."""
+    return render_template('download.html')
+
+
 @app.route('/signup/', methods=['POST', 'GET'])
 def signup():
     """Render the website's signup page."""
@@ -38,15 +44,15 @@ def signup():
     # If a user that already signed in loads this page...
     if current_user.is_authenticated:
         # ...then redirect them to home page
-        flash("You are already logged in.", "warning-good")
-        return redirect( url_for('home') )
+        flash("You are already logged in.", "good")
+        return redirect(url_for('home'))
 
     # Create the form
     signup_form = SignUpForm()
 
     if request.method == "POST":
         if signup_form.validate_on_submit():
-            
+
             f_name = signup_form.first_name.data
             l_name = signup_form.last_name.data
             email = signup_form.email.data
@@ -61,23 +67,25 @@ def signup():
             elif len(email) < 4:
                 flash('Email must be greater than 3 characters.', category='error')
             elif len(f_name) < 2:
-                flash('First name must be greater than 1 character.', category='error')
+                flash('First name must be greater than 1 character.',
+                      category='error')
             elif len(l_name) < 2:
-                flash('Last name must be greater than 1 character.', category='error')
+                flash('Last name must be greater than 1 character.',
+                      category='error')
             elif pass1 != pass2:
                 flash('Passwords don\'t match.', category='error')
             elif len(pass1) < 7:
                 flash('Password must be at least 7 characters.', category='error')
             else:
                 new_user = User(f_name, l_name, email, pass1)
-                
+
                 db.session.add(new_user)
                 db.session.commit()
 
                 login_user(new_user, remember=True)
 
                 flash('Account created!', category='success')
-                return redirect( url_for('home') )
+                return redirect(url_for('home'))
 
     return render_template('signup.html', form=signup_form)
 
@@ -88,8 +96,8 @@ def login():
     # If a user that already signed in loads this page...
     if current_user.is_authenticated:
         # ...then redirect them to home page
-        flash("You are already logged in.", "warning-good")
-        return redirect( url_for('home') )
+        flash("You are already logged in.", "good")
+        return redirect(url_for('home'))
 
     # Create the form
     login_form = LoginForm()
@@ -97,22 +105,22 @@ def login():
     # Check for entered data
     if request.method == "POST":
         if login_form.validate_on_submit():
-            
+
             email = login_form.email.data
             password = login_form.password.data
 
             user = User.query.filter_by(email=email).first()
-            
+
             # Validate the fields
             if user is not None and check_password_hash(user.password, password):
-                
+
                 login_user(user)
 
                 flash('Logged in successfully.', 'success')
-                return redirect( url_for('dashboard') )
+                return redirect(url_for('dashboard'))
             else:
                 flash('Email or Password is incorrect.', 'danger')
-                return redirect( url_for("login") )
+                return redirect(url_for("login"))
 
         else:
             flash_errors(login_form)
@@ -125,7 +133,7 @@ def login():
 def logout():
     logout_user()
 
-    flash("You have: Logged Out", "warning-good")
+    flash("You have: Logged Out", "good")
 
     return redirect(url_for('home'))
 

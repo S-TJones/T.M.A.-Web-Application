@@ -4,8 +4,11 @@
     {% if messages %}
 
         {% for category, message in messages %}
-            <div class="pop-up warning-{{ category }}">
-                <p> {{ message }} </p>
+            <div id="popUp" class="pop-up warning-{{ category }}">
+                <div class="warning-message">
+                    <p> {{ message }} </p>
+                    <i class="fas fa-times" onclick="closePopup()"></i>
+                </div>
             </div>
         {% endfor %}
 
