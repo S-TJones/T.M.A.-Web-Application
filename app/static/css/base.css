@@ -49,10 +49,15 @@ header > input {
 
 header nav {
   margin-left: auto;
+  display: flex;
 }
 
 header ul {
   display: flex;
+}
+
+.space-left {
+  margin-left: auto;
 }
 
 header li {
@@ -63,12 +68,23 @@ header a {
   text-decoration: none;
   text-transform: uppercase;
   padding: 5px 10px;
+  color: var(--black);
+}
+
+header h3 {
+  cursor: pointer;
+  text-transform: none;
 }
 
 /* Main Section */
 main {
   min-height: calc(100vh - calc(120px));
   width: 100%;
+  text-align: center;
+}
+
+main > h1 {
+  margin-top: 30px;
 }
 
 /* Other Styles in the Main */
