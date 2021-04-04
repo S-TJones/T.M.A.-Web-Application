@@ -69,6 +69,12 @@ header a {
   text-transform: uppercase;
   padding: 5px 10px;
   color: var(--black);
+  font-weight: bold;
+}
+
+header a:hover,
+header a:focus {
+  color: var(--complement-color);
 }
 
 header h3 {
@@ -80,7 +86,7 @@ header h3 {
 main {
   min-height: calc(100vh - calc(120px));
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 main > h1 {
