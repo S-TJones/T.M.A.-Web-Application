@@ -1,0 +1,165 @@
+/* Global Stuff */
+:root {
+  --white: #ffffff;
+  --black: #25292b;
+  --background-color: #e7e7e7;
+  --light-gray: #f1f1f1;
+  --dar-gray: #cecece;
+  --primary-color: rgb(245, 245, 12);
+  --complement-color: #665df5;
+  --complement-color-light: #8f88f7;
+}
+
+/* Login & SignUp Forms */
+.flexing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  padding: auto 20px;
+}
+
+.forms-setup {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-template-areas: "left right";
+  margin: auto auto;
+}
+
+.forms-setup img {
+  width: 300px;
+  height: 300px;
+  padding: 0px 10px;
+}
+
+.forms-setup section:nth-child(1) {
+  grid-area: left;
+  padding: 0px 0px 0px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto;
+  min-width: 300px;
+  height: auto;
+}
+
+.forms-setup section:nth-child(1) p {
+  /* padding: 0px 30px; */
+  overflow: hidden;
+  width: 100%;
+  height: 50%;
+  padding: 0px 20px;
+}
+
+.forms-setup section:nth-child(2) {
+  /* width: 300px; */
+  grid-area: right;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 400px;
+}
+
+.form-prompt {
+  padding: 10px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.form-prompt a {
+  text-decoration: none;
+}
+
+/* Button */
+.user-btn {
+  width: fit-content;
+  padding: 15px;
+  font-weight: bold;
+  background-color: var(--complement-color);
+  color: var(--white);
+  border: none;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.user-btn:hover {
+  opacity: 0.8;
+}
+
+#login,
+#register {
+  min-width: 300px;
+  border: solid 1px var(--black);
+  border-radius: 15px;
+  padding: 20px 10px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+#login {
+  margin-top: 50px;
+}
+
+#login h3,
+#register h3 {
+  padding-bottom: 20px;
+  border-bottom: solid 1px var(--black);
+}
+
+.input-pair {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.input-pair label {
+  padding: 10px 0px 5px 10px;
+  font-weight: bold;
+}
+
+input {
+  background-clip: padding-box;
+  background-color: #f4f4f4;
+  border: 1px solid rgba(123, 154, 186, 0.17);
+  /* border: 1px solid var(--complement-color); */
+  border-radius: 5px;
+  outline: 0;
+  padding: 2px 16px;
+  padding-top: 6px;
+  font-size: 14px;
+  font-weight: normal;
+  height: 40px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  border: solid 1px var(--complement-color-light);
+  box-shadow: 0 0 5px var(--complement-color-light);
+  outline: none;
+}
+
+fieldset {
+  border: none;
+}
+
+/* Review Form */
+textarea {
+  min-height: 40px;
+  overflow: auto;
+  resize: vertical;
+  width: 100%;
+}

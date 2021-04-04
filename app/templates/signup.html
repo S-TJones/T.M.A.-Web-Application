@@ -1,66 +1,74 @@
 
 {% extends "base.html" %}
 
-{% block css %} {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
 
 {% block main %}
 
-    <section class="left">
-        <h1>Sign Up / Register</h1>
-        <p>Work in progress...</p>
-
-        <hr>
-    </section>
-
-    <section class="right">
-        <form action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">
-            {{ form.csrf_token }}
-
-            <h3>Sign Up</h3>
-    
-            <fieldset>
-                <div class="input-pair">
-    
-                    <label for="firstName">First Name</label>
-                    {{ form.first_name(id='firstName', placeholder='Enter first name') }} 
+    <div class="flexing">
+        <div class="forms-setup">
+            <section>
+                <h1>Register</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque nam illum eligendi in perspiciatis assumenda pariatur libero amet hic? Facilis culpa expedita, laborum accusantium voluptate, dolor at nisi aperiam rerum illo qui asperiores? Adipisci molestiae voluptatem ut vero hic qui sequi repellat fuga explicabo debitis, veritatis cupiditate consectetur eaque provident?</p>
+            </section>
+        
+            <section>
+                <form id="register" action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+        
+                    <h3>Join us...</h3>
+            
+                    <fieldset>
+                        <div class="input-pair">
+            
+                            <label for="firstName">First Name</label>
+                            {{ form.first_name(id='firstName', placeholder='Enter first name') }} 
+                        
+                        </div>
                 
-                </div>
-        
-                <div class="input-pair">
-        
-                    <label for="lastName">Last Name</label>
-                    {{ form.last_name(id='lastName', placeholder='Enter last name') }}
+                        <div class="input-pair">
                 
-                </div>
-            </fieldset>
+                            <label for="lastName">Last Name</label>
+                            {{ form.last_name(id='lastName', placeholder='Enter last name') }}
+                        
+                        </div>
+                    </fieldset>
+        
+                    <div class="input-pair">
+            
+                        <label for="email">Email Address</label>
+                        {{ form.email(id='email', autocomplete="off", placeholder='Enter email') }}
+            
+                    </div>
+            
+                    <fieldset>
+                        <div class="input-pair">
+            
+                            <label for="password-1">Password</label>
+                            {{ form.password1(id='password-1', placeholder='Enter password') }}
+                
+                        </div>
+                
+                        <div class="input-pair">
+                
+                            <label for="password-2">Password (Confirm)</label>
+                            {{ form.password2(id='password-2', placeholder='Confirm password') }}
+                
+                        </div>
+                    </fieldset>
+            
+                    <br />
+            
+                    <button type="submit" class="user-btn">Submit</button>
+                </form>
 
-            <div class="input-pair">
-    
-                <label for="email">Email Address</label>
-                {{ form.email(id='email', autocomplete="off", placeholder='Enter email') }}
-    
-            </div>
-    
-            <fieldset>
-                <div class="input-pair">
-    
-                    <label for="password-1">Password</label>
-                    {{ form.password1(id='password-1', placeholder='Enter password') }}
-        
-                </div>
-        
-                <div class="input-pair">
-        
-                    <label for="password-2">Password (Confirm)</label>
-                    {{ form.password2(id='password-2', placeholder='Confirm password') }}
-        
-                </div>
-            </fieldset>
-    
-            <br />
-    
-            <button type="submit" class="user-btn">Submit</button>
-        </form>
-    </section>
+                <p class="form-prompt">
+                    Already have an account? Login <a href="{{ url_for('signup') }}" class="special">here</a>.
+                </p>
+            </section>
+        </div>
+    </div>
 
 {% endblock %}

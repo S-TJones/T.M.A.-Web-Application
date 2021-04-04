@@ -1,42 +1,48 @@
 
 {% extends "base.html" %}
 
-{% block css %} {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
 
 {% block main %}
 
-    <section class="left">
-        <h1>Login</h1>
-        <p>Work in progress...</p>
-
-        <hr>
-    </section>
-
-    <section class="right">
-        <form action="{{ url_for('login') }}" method="POST">
-            {{ form.csrf_token }}
-
-            <h3>Login</h3>
+    <div class="flexing">
+        <div class="forms-setup">
+            <section>
+                
+                <img src="{{ url_for('static', filename='images/undraw_modern_design_v3wv.svg') }}" alt="">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, officia incidunt? Ipsam, eum cupiditate sunt in sint fuga consequatur dignissimos nemo debitis et unde molestias consequuntur voluptate minus mollitia, culpa eaque. Adipisci doloribus perspiciatis dolor amet quia earum libero suscipit rem obcaecati, atque sit neque voluptas nihil repellat, molestias voluptatem.
+                </p>
+            </section>
+        
+            <section>
+                <form id="login" action="{{ url_for('login') }}" method="POST">
+                    {{ form.csrf_token }}
+        
+                    <h3>Welcome back...</h3>
+            
+                    <div class="input-pair">
+                        <label for="email">Email Address</label>
+                        {{ form.email(id='email', autocomplete="off", placeholder='Enter email') }}
+                    </div>
+            
+                    <div class="input-pair">
+                        <label for="password">Password</label>
+                        {{ form.password(id='password', placeholder='Enter password') }}
+                    </div>
+            
+                    <br />
+            
+                    <button type="submit" class="user-btn">Login</button>
+            
+                </form>
     
-            <div class="input-pair">
-    
-                <label for="email">Email Address</label>
-                {{ form.email(id='email', autocomplete="off", placeholder='Enter email') }}
-    
-            </div>
-    
-            <div class="input-pair">
-    
-                <label for="password">Password</label>
-                {{ form.password(id='password', placeholder='Enter password') }}
-    
-            </div>
-    
-            <br />
-    
-            <button type="submit" class="user-btn">Login</button>
-    
-        </form>
-    </section>
+                <p class="form-prompt">
+                    Don't have an account? Sign Up <a href="{{ url_for('signup') }}" class="special">here</a>.
+                </p>
+            </section>
+        </div>
+    </div>
 
 {% endblock %}
