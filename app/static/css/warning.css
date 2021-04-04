@@ -10,8 +10,37 @@
   border-radius: 10px 0px 0px 10px;
   /* background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
 }
 
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+/* Other Pop-Up related Styles */
 .warning-message {
   display: grid;
   grid-template-columns: repeat(4, auto);
