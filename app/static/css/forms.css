@@ -29,25 +29,43 @@
   margin: auto auto;
 }
 
-.forms-setup img {
-  width: 300px;
-  height: 300px;
-  padding: 0px 10px;
-}
-
 .forms-setup section:nth-child(1) {
   grid-area: left;
-  padding: 0px 0px 0px 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  padding: 30px 0px 0px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: auto auto;
+  grid-template-areas: "title title title title" "image image text text";
   margin: 0px auto;
   min-width: 300px;
-  height: auto;
+  height: fit-content;
 }
 
+.forms-setup .text > h2 {
+  grid-area: title;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: solid 2px var(--complement-color);
+}
+
+.forms-setup img {
+  grid-area: image;
+  width: 100%;
+  height: 300px;
+  padding: 20px 10px;
+}
+
+/* .forms-setup .text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
 .forms-setup section:nth-child(1) p {
+  grid-area: text;
   /* padding: 0px 30px; */
   overflow: hidden;
   width: 100%;

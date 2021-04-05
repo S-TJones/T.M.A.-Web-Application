@@ -10,15 +10,21 @@
     <div class="flexing">
         <div class="forms-setup">
             <section>
-                <h1>Register</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque nam illum eligendi in perspiciatis assumenda pariatur libero amet hic? Facilis culpa expedita, laborum accusantium voluptate, dolor at nisi aperiam rerum illo qui asperiores? Adipisci molestiae voluptatem ut vero hic qui sequi repellat fuga explicabo debitis, veritatis cupiditate consectetur eaque provident?</p>
+                <img src="{{ url_for('static', filename='images/undraw_progressive_app_m9ms.svg') }}" alt="">
+                
+                <div class="text">
+                    <h2>Join us...</h2>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque nam illum eligendi in perspiciatis assumenda pariatur libero amet hic? Facilis culpa expedita, laborum accusantium voluptate, dolor at nisi aperiam rerum illo qui asperiores? Adipisci molestiae voluptatem ut vero hic qui sequi repellat fuga explicabo debitis, veritatis cupiditate consectetur eaque provident?
+                    </p>
+                </div>
             </section>
         
             <section>
                 <form id="register" action="{{ url_for('signup') }}" method="POST" enctype="multipart/form-data">
                     {{ form.csrf_token }}
         
-                    <h3>Join us...</h3>
+                    <h3>REGISTER</h3>
             
                     <fieldset>
                         <div class="input-pair">
