@@ -41,36 +41,39 @@
   height: fit-content;
 }
 
-.forms-setup .text > h2 {
-  grid-area: title;
-  width: 100%;
-  text-align: center;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-  border-bottom: solid 2px var(--complement-color);
-}
-
-.forms-setup img {
-  grid-area: image;
-  width: 100%;
-  height: 300px;
-  padding: 20px 10px;
-}
-
 /* .forms-setup .text {
+  grid-area: title;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 } */
 
+.forms-setup section:nth-child(1) h1 {
+  grid-area: title;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  border-bottom: solid 2px var(--complement-color);
+}
+
+.forms-setup section:nth-child(1) img {
+  grid-area: image;
+  width: 100%;
+  height: 300px;
+  padding: 0px 10px;
+}
+
 .forms-setup section:nth-child(1) p {
   grid-area: text;
-  /* padding: 0px 30px; */
-  overflow: hidden;
   width: 100%;
-  height: 50%;
+  height: 100%;
   padding: 0px 20px;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .forms-setup section:nth-child(2) {
@@ -180,4 +183,30 @@ textarea {
   overflow: auto;
   resize: vertical;
   width: 100%;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+  .forms-setup section:nth-child(1) {
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "title title title title" "text text text text" "image image image image";
+  }
+
+  .forms-setup section:nth-child(1) img {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .forms-setup {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "left" "right";
+  }
+
+  .forms-setup section:nth-child(1) {
+    padding: 30px 50px 0px;
+  }
 }
