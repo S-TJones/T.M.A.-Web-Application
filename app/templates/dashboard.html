@@ -1,11 +1,37 @@
 
 {% extends "base.html" %}
 
-{% block css %} {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dash.css') }}">
+{% endblock %}
 
 {% block main %}
 
-    <h1>User Dashboard</h1>
-    <p>Work in progress...</p>
+    <div class="dash">
+        <aside>
+            <ul>
+                <li>View Tasks</li>
+                <li>View Reviews</li>
+                <li>Settings</li>
+            </ul>
+        </aside>
+        
+        <div class="board">
+            <h1>User Dashboard</h1>
+    
+            <div class="tabs">
+                <a href="#user-tasks">Tasks</a>
+                <a href="#user-reviews">Reviews</a>
+            </div>
+
+            <div class="items">
+                <div id="user-tasks">All Tasks</div>
+                <div id="user-reviews">All Reviews</div>
+                <div id="default">
+                    <p>You have not created any tasks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
