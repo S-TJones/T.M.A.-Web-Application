@@ -20,15 +20,30 @@
             <h1>User Dashboard</h1>
     
             <div class="tabs">
-                <a href="#user-tasks">Tasks</a>
-                <a href="#user-reviews">Reviews</a>
+                <a href="#default">New Task</a>
+                <a href="#user-tasks">All Tasks</a>
+                <a href="#user-reviews">All Reviews</a>
             </div>
 
             <div class="items">
                 <div id="user-tasks">All Tasks</div>
                 <div id="user-reviews">All Reviews</div>
                 <div id="default">
-                    <p>You have not created any tasks.</p>
+                    <form action="{{ url_for('review') }}" method="POST">
+                        
+
+                        <fieldset>
+                            <label for="review">Review here</label>
+                            <input type="text" name="review" id="review">
+                        </fieldset>
+
+                        <fieldset>
+                            <label for="rate">Rating here</label>
+                            <input type="number" name="rate" id="rate">
+                        </fieldset>
+
+                        <button type="submit" class="user-btn">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
