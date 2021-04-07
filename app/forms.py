@@ -34,5 +34,11 @@ class ReviewForm(FlaskForm):
     rating = IntegerField('Rating', validators=[InputRequired()])
 # ---------------------------------------------------------------------------------------
 
+
+# Review Class -- in progress
+class TaskForm(FlaskForm):
+
+    comment = StringField('Message', widget=TextArea(),
+                          validators=[DataRequired()])
     rating = IntegerField('Rating', validators=[InputRequired()])
-#---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------

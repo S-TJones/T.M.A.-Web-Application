@@ -54,3 +54,20 @@ class Review(db.Model):
         # return '<Review %r>' % (self.email)
         return f'<Review {self.comment} {self.rating}>'
 
+# Task
+
+
+class Task(db.Model):
+    uid = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    message = db.Column()
+
+    def __init__(self, uid, title, message):
+        self.uid = uid
+        self.title = title
+        self.message = message
+
+    def __repr__(self):
+        # return '<Task %r>' % (self.email)
+        return f'<Task {self.title} {self.message}>'
