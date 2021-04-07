@@ -6,17 +6,48 @@ from flask import flash, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.helpers import send_from_directory
 from werkzeug.security import check_password_hash
-from app.forms import SignUpForm, LoginForm
-from app.models import User
+from app.forms import SignUpForm, LoginForm, ReviewForm
+from app.models import User, Review, Task
 
 # Routes
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     """Render website's home page."""
     # return "Hello World"
-    return render_template('home.html')
+
+    review_form = ReviewForm()
+    reviews = db.session.query(Review).all()
+
+    # If a user that already signed in loads this page...
+    if current_user.is_authenticated:
+        if request.method == "POST":
+
+            if review_form.validate_on_submit():
+
+                uid = current_user.id
+                comment = review_form.comment.data
+                rating = review_form.rating.data
+
+                if rating > 5:
+                    flash('Rating cannot be more than 5.', category='error')
+                elif rating < 1:
+                    flash('Rating cannot be less than 1.', category='error')
+                elif len(comment) < 2:
+                    flash('Your review must be greater than 1 character.',
+                          category='error')
+                else:
+                    new_review = Review(uid, comment, rating)
+
+                    db.session.add(new_review)
+                    db.session.commit()
+
+                    flash('Review added successfully!', category='success')
+                    return redirect(url_for('home'))
+    # Else
+
+    return render_template('home.html', reviews=reviews, form=review_form)
 
 
 @app.route('/about/')
@@ -25,7 +56,8 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/reviews/')
+@app.route('/reviews/', methods=['GET', 'POST'])
+@login_required
 def review():
     """Render the website's review page."""
     return render_template('reviews.html')

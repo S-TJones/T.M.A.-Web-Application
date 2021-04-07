@@ -55,9 +55,37 @@
     </section>
 
     <section id="reviews">
+        <h1>Reviews</h1>
         <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni maiores placeat illum iste at debitis quos molestias possimus sint, pariatur soluta eaque modi consequatur vel provident! Corrupti nihil voluptates odit atque hic laborum minima commodi. Nostrum a, dolorem excepturi recusandae obcaecati, blanditiis libero ea, incidunt voluptas magni deserunt cumque.
+
+            {% for review in reviews %}
+            <div class="top-reviews">
+                <p>{{ review.comment }}</p>
+                <p class="rate">{{ review.rating }}</p>
+            </div>
+            {% endfor %}
         </p>
+        {% if current_user.is_authenticated %}
+        <div class="add">
+            <a href="#">Add a Review</a>
+            <form action="{{ url_for('home') }}" method="POST">
+                {{ form.csrf_token }}
+
+                <fieldset>
+                    <label for="comment">Review here</label>
+                    {{ form.comment(id='comment', autocomplete="off", placeholder='Enter comment') }}
+                </fieldset>
+
+                <fieldset>
+                    <label for="rate">Rating here</label>
+                    {{ form.rating(id='rate', min='1', max='5') }}
+                </fieldset>
+
+                <button type="submit" class="user-btn">Submit</button>
+            </form>
+        </div>
+        {% endif %}
     </section>
 
 {% endblock %}
