@@ -2,6 +2,7 @@
 from . import db
 from werkzeug.security import generate_password_hash
 
+
 class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +15,8 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.password = generate_password_hash(password, method='pbkdf2:sha256')
+        self.password = generate_password_hash(
+            password, method='pbkdf2:sha256')
 
     def is_authenticated(self):
         return True
@@ -35,11 +37,20 @@ class User(db.Model):
         # return '<User %r>' % (self.email)
         return f'<User {self.first_name} {self.last_name} {self.email} {self.password}>'
 
-    
+
 # Review
 class Review(db.Model):
-    uid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    uid = db.Column(db.Integer)
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.String(255))
     rating = db.Column(db.Integer)
-    
+
+    def __init__(self, uid, comment, rating):
+        self.uid = uid
+        self.comment = comment
+        self.rating = rating
+
+    def __repr__(self):
+        # return '<Review %r>' % (self.email)
+        return f'<Review {self.comment} {self.rating}>'
+
