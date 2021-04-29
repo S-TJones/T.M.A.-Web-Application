@@ -1,11 +1,13 @@
 
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, PasswordField
+# from wtforms import IntegerField, StringField, PasswordField
+from wtforms.fields import StringField, PasswordField, IntegerField, TextField, FloatField, FileField, TextAreaField, SelectField
 from wtforms.validators import InputRequired, DataRequired, Email
-from wtforms.widgets import TextArea
-
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 # User Class
+
+
 class SignUpForm(FlaskForm):
 
     first_name = StringField('Username', validators=[InputRequired()])
@@ -14,6 +16,8 @@ class SignUpForm(FlaskForm):
     password1 = PasswordField('Password', validators=[InputRequired()])
     password2 = PasswordField('Password (Confirm)',
                               validators=[InputRequired()])
+    photo = FileField('Image', validators=[FileAllowed(
+        ['jpg', 'png'], 'Please Upload Images Only!')])
 # ---------------------------------------------------------------------------------------
 
 # Login Class
@@ -29,8 +33,7 @@ class LoginForm(FlaskForm):
 # Review Class
 class ReviewForm(FlaskForm):
 
-    comment = StringField('Message', widget=TextArea(),
-                          validators=[DataRequired()])
+    comment = TextAreaField("Message", validators=[DataRequired()])
     rating = IntegerField('Rating', validators=[InputRequired()])
 # ---------------------------------------------------------------------------------------
 
@@ -38,7 +41,6 @@ class ReviewForm(FlaskForm):
 # Review Class -- in progress
 class TaskForm(FlaskForm):
 
-    comment = StringField('Message', widget=TextArea(),
-                          validators=[DataRequired()])
-    rating = IntegerField('Rating', validators=[InputRequired()])
+    title = TextField("Title", validators=[DataRequired()])
+    task = TextAreaField("Task", validators=[DataRequired()])
 # ---------------------------------------------------------------------------------------

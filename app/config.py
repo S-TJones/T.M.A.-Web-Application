@@ -6,6 +6,10 @@ class Config(object):
     """Base Config Object"""
     DEBUG = False
 
+    # Storage Location
+    UPLOAD_FOLDER = '../static/uploads'
+    IMAGE_FOLDER = '../static/images'
+
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'Som3$ec5etK*y'
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL') or 'postgresql://yourusername:yourpassword@localhost/databasename'

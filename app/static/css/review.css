@@ -1,0 +1,172 @@
+/* Global Stuff */
+:root {
+  --white: #ffffff;
+  --black: #25292b;
+  --background-color: #e7e7e7;
+  --light-gray: #f1f1f1;
+  --dar-gray: #cecece;
+  --primary-color: rgb(245, 245, 12);
+  --complement-color: #665df5;
+  --complement-color-light: #8f88f7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.top-reviews {
+  width: 300px;
+  height: fit-content;
+  border: solid 1px var(--complement-color-light);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.top-reviews img {
+  grid-area: image;
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
+
+.top-reviews .review-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-reviews .name {
+  /* grid-area: name; */
+  font-weight: bold;
+  padding: 5px 0px;
+  margin: 0;
+}
+
+.top-reviews .comment {
+  /* grid-area: comment; */
+  height: 70px;
+  width: 200px;
+  padding: 5px;
+  border: solid 1px var(--dar-gray);
+  border-radius: 5px;
+  margin: 10px 0px;
+  overflow: auto;
+}
+
+.top-reviews .ratings {
+  /* grid-area: rating; */
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Star Styles - Ratings */
+.top-reviews .ratings i {
+  cursor: pointer;
+}
+
+.no-stars,
+.yellow-stars {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.yellow-stars {
+  color: yellow;
+}
+
+.no-stars {
+  color: gray;
+}
+
+/* Add a Review Section */
+.add {
+  margin: 20px auto;
+  width: 30%;
+  /* display: flex;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "button" "form";
+}
+
+.add form,
+.cancel {
+  display: none;
+}
+
+.add a {
+  grid-area: button;
+  text-decoration: none;
+  padding: 5px 10px;
+  width: fit-content;
+  background-color: var(--complement-color-light);
+  color: var(--white);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+}
+
+.add a:hover,
+.add a:focus {
+  opacity: 0.85;
+}
+
+#home-review:target {
+  display: block;
+  grid-area: form;
+  border: solid 1px var(--black);
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+}
+#home-review:target ~ .cancel {
+  display: block;
+}
+#home-review:target ~ .add-form {
+  display: none;
+}
+
+#home-review fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#home-review fieldset label {
+  padding: 10px 0px 5px 10px;
+  font-weight: bold;
+}
+
+#home-review textarea {
+  overflow: auto;
+  height: 80px;
+  margin: 0px 5px;
+}
+
+#home-review #rate {
+  width: 30%;
+  margin: 0px 5px;
+}
+
+#home-review button {
+  width: fit-content;
+  padding: 5px 15px;
+  margin-left: 5px;
+  margin-top: 10px;
+  background-color: var(--complement-color);
+  color: var(--white);
+  border: none;
+  border-radius: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

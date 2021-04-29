@@ -10,6 +10,11 @@
   --complement-color-light: #8f88f7;
 }
 
+.form-dont {
+  /* display: none; */
+  margin-bottom: 10px;
+}
+
 /* Login & SignUp Forms */
 .flexing {
   display: flex;

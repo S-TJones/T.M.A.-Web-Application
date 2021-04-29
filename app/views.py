@@ -1,13 +1,26 @@
 
 import os
 from app import app, db, login_manager
+
 from flask import render_template, request, redirect, url_for
 from flask import flash, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.helpers import send_from_directory
+
+from PIL import Image  # Used for opening image objects
+
+from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash
+
 from app.forms import SignUpForm, LoginForm, ReviewForm
 from app.models import User, Review, Task
+
+# Helper
+
+
+def get_image(filename):
+    rootdir = os.getcwd()
+    return send_from_directory(os.path.join(rootdir, app.config['UPLOAD_FOLDER']), filename)
 
 # Routes
 
@@ -27,8 +40,11 @@ def home():
             if review_form.validate_on_submit():
 
                 uid = current_user.id
+                uname = str(current_user.first_name) + \
+                    " " + str(current_user.last_name)
                 comment = review_form.comment.data
                 rating = review_form.rating.data
+                photo = current_user.user_photo
 
                 if rating > 5:
                     flash('Rating cannot be more than 5.', category='error')
@@ -38,7 +54,7 @@ def home():
                     flash('Your review must be greater than 1 character.',
                           category='error')
                 else:
-                    new_review = Review(uid, comment, rating)
+                    new_review = Review(uid, uname, comment, rating, photo)
 
                     db.session.add(new_review)
                     db.session.commit()
@@ -91,6 +107,15 @@ def signup():
             pass1 = signup_form.password1.data
             pass2 = signup_form.password2.data
 
+            # photo_name = "plain-user.jpg"
+            # signup_form.photo.data = Image.open(os.path.join(
+            #     app.config['IMAGE_FOLDER'], photo_name))
+            # signup_form.photo.data = Image.open(r"plain-user.jpg")
+
+            photo = signup_form.photo.data
+            filename = secure_filename(photo.filename)
+            photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
             user = User.query.filter_by(email=email).first()
 
             # Verifying data
@@ -109,7 +134,7 @@ def signup():
             elif len(pass1) < 7:
                 flash('Password must be at least 7 characters.', category='error')
             else:
-                new_user = User(f_name, l_name, email, pass1)
+                new_user = User(f_name, l_name, email, pass1, photo)
 
                 db.session.add(new_user)
                 db.session.commit()
@@ -213,6 +238,12 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
             ), 'danger')
+
+
+@app.route('/uploads/<filename>')
+def getimage(filename):
+    rootdir = os.getcwd()
+    return send_from_directory(os.path.join(rootdir, app.config['UPLOAD_FOLDER']), filename)
 
 
 @app.route('/<file_name>.txt')
