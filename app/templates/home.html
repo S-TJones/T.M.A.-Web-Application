@@ -95,13 +95,13 @@
                 {{ form.csrf_token }}
     
                 <fieldset>
-                    <label for="comment">Review here</label>
+                    <label for="comment">Add your '<span class="special">Review</span>' here</label>
                     {{ form.comment(id='comment', autocomplete="off", placeholder='Enter comment') }}
                 </fieldset>
     
                 <fieldset>
-                    <label for="rate">Rating here</label>
-                    {{ form.rating(id='rate', min='1', max='5') }}
+                    <label for="rate">Add your '<span class="special">Rating</span>' down below</label>
+                    {{ form.rating(id='rate', min='1', max='5', autocomplete="off") }}
                 </fieldset>
     
                 <button type="submit" class="user-btn">Submit</button>

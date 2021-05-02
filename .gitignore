@@ -24,3 +24,6 @@ node_modules
 
 # Notes
 my-notes*
+
+# Migrations
+migrations/
