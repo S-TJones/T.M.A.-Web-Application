@@ -58,10 +58,16 @@
         <h1>Reviews</h1>
         <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni maiores placeat illum iste at debitis quos molestias possimus sint, pariatur soluta eaque modi consequatur vel provident! Corrupti nihil voluptates odit atque hic laborum minima commodi. Nostrum a, dolorem excepturi recusandae obcaecati, blanditiis libero ea, incidunt voluptas magni deserunt cumque.
+        </p>
 
+        <div class="all-reviews">
             {% for review in reviews %}
             <div class="top-reviews">
-                <img src = "{{ url_for('getimage', filename= review.user_photo) }}" alt ="User's Photo">
+                {% if review.user_photo == "plain-user.jpg" %}
+                <img src = "../static/images/plain-user.jpg" alt ="User's Photo">
+                {% else %}
+                <img src = "{{ url_for('get_image', filename= review.user_photo) }}" alt ="User's Photo">
+                {% endif %}
                 <div class="review-items">
                     <p class="name">{{ review.user_name }}</p>
                     <p class="comment">
@@ -77,9 +83,10 @@
                         <i class="fas fa-star no-stars"></i>
                         {% endfor %}
                     </div>
+                </div>
             </div>
             {% endfor %}
-        </p>
+        </div>
 
         {% if current_user.is_authenticated %}
         <div class="add">

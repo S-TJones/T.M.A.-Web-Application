@@ -14,10 +14,7 @@ class SignUpForm(FlaskForm):
     last_name = StringField('Name', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     password1 = PasswordField('Password', validators=[InputRequired()])
-    password2 = PasswordField('Password (Confirm)',
-                              validators=[InputRequired()])
-    photo = FileField('Image', validators=[FileAllowed(
-        ['jpg', 'png'], 'Please Upload Images Only!')])
+    password2 = PasswordField('Password (Confirm)', validators=[InputRequired()])
 # ---------------------------------------------------------------------------------------
 
 # Login Class

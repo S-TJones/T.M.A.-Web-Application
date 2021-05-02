@@ -7,20 +7,16 @@ from flask import flash, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.helpers import send_from_directory
 
-from PIL import Image  # Used for opening image objects
-
 from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash
 
-from app.forms import SignUpForm, LoginForm, ReviewForm
-from app.models import User, Review, Task
+from app.forms import *
+from app.models import *
 
 # Helper
 
 
-def get_image(filename):
-    rootdir = os.getcwd()
-    return send_from_directory(os.path.join(rootdir, app.config['UPLOAD_FOLDER']), filename)
+
 
 # Routes
 
@@ -45,7 +41,7 @@ def home():
                 comment = review_form.comment.data
                 rating = review_form.rating.data
                 photo = current_user.user_photo
-
+                
                 if rating > 5:
                     flash('Rating cannot be more than 5.', category='error')
                 elif rating < 1:
@@ -106,15 +102,7 @@ def signup():
             email = signup_form.email.data
             pass1 = signup_form.password1.data
             pass2 = signup_form.password2.data
-
-            # photo_name = "plain-user.jpg"
-            # signup_form.photo.data = Image.open(os.path.join(
-            #     app.config['IMAGE_FOLDER'], photo_name))
-            # signup_form.photo.data = Image.open(r"plain-user.jpg")
-
-            photo = signup_form.photo.data
-            filename = secure_filename(photo.filename)
-            photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            photo = "plain-user.jpg" # Sets default photo
 
             user = User.query.filter_by(email=email).first()
 
@@ -241,8 +229,13 @@ def flash_errors(form):
 
 
 @app.route('/uploads/<filename>')
-def getimage(filename):
+def get_image(filename):
     rootdir = os.getcwd()
+
+    # Check if it's the "plain-user" image
+    # if filename == "plain-user.jpg":
+    #     return send_from_directory(os.path.join(rootdir, app.config['IMAGE_FOLDER']), filename)
+
     return send_from_directory(os.path.join(rootdir, app.config['UPLOAD_FOLDER']), filename)
 
 
