@@ -193,8 +193,11 @@ def load_user(id):
 @app.route('/dashboard/')
 @login_required
 def dashboard():
+
+    photo = current_user.user_photo
+
     """Render the website's dashboard page."""
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', photo=photo)
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory

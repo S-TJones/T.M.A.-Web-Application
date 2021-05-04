@@ -8,15 +8,33 @@
 {% block main %}
 
     <div class="dash">
-        <aside>
-            <ul>
-                <li>View Tasks</li>
-                <li>View Reviews</li>
-                <li>Settings</li>
-            </ul>
+        <aside id="dash-aside">
+            <div class="side-buttons" id="side-buttons">
+                <div class="top-buttons">
+                    {% if photo == "plain-user.jpg" %}
+                    <img src = "../static/images/plain-user.jpg" alt ="User's Photo">
+                    {% else %}
+                    <img src = "{{ url_for('get_image', filename= photo) }}" alt ="User's Photo">
+                    {% endif %}
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Settings</a>
+                </div>
+                <div class="base-buttons">
+                    <a href="#" class="closebtn" onclick="closeNav()">
+                        <i id="aside-close" class="fas fa-angle-double-left"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="open-close">
+                <a href="#" class="openbtn" onclick="openNav()">
+                    <i id="aside-open" class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
         </aside>
         
-        <div class="board">
+        <div class="board" id="board">
             <h1>User Dashboard</h1>
     
             <div class="tabs">
@@ -49,4 +67,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='scripts/dash.js') }}"></script>
 {% endblock %}
