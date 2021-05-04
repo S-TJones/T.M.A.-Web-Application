@@ -44,20 +44,54 @@
             </div>
 
             <div class="items">
-                <div id="user-tasks">All Tasks</div>
-                <div id="user-reviews">All Reviews</div>
-                <div id="default">
-                    <form action="{{ url_for('review') }}" method="POST">
+                <div id="user-tasks">
+                    <h3>All Tasks</h3>
+                    {% for task in tasks %}
+                    <div class="single-review">
+                        <p>{{ task.title }}</p>
+                        <p>123</p>
+                        <p>{{ task.message }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="user-reviews">
+                    <h3>All Reviews</h3>
+                    {{ reviews }}
+                    {% for review in reviews %}
+                    {{ review }}
+                    <div class="top-reviews">
                         
-
+                        <div class="review-items">
+                            <p class="name">No name</p>
+                            <p class="comment">
+                                {{ review.comment }}
+                            </p>
+                            
+                            <div class="ratings">
+                                {% for num in range( review.rating ) %}
+                                <i class="fas fa-star yellow-stars"></i>
+                                {% endfor %}
+        
+                                {% for num in range( 5 - review.rating ) %}
+                                <i class="fas fa-star no-stars"></i>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="default">
+                    <form action="{{ url_for('dashboard') }}" method="POST">
+                        {{ form.csrf_token }}
+                        
                         <fieldset>
-                            <label for="review">Review here</label>
-                            <input type="text" name="review" id="review">
+                            <label for="task-title">Title here</label>
+                            {{ form.title(id='task-title', placeholder='Enter Task title') }} 
                         </fieldset>
 
                         <fieldset>
-                            <label for="rate">Rating here</label>
-                            <input type="number" name="rate" id="rate">
+                            <label for="desc">Description here</label>
+                            {{ form.task(id='desc', placeholder='Enter task description') }} 
                         </fieldset>
 
                         <button type="submit" class="user-btn">Submit</button>

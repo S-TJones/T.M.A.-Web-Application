@@ -14,7 +14,8 @@ class SignUpForm(FlaskForm):
     last_name = StringField('Name', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     password1 = PasswordField('Password', validators=[InputRequired()])
-    password2 = PasswordField('Password (Confirm)', validators=[InputRequired()])
+    password2 = PasswordField('Password (Confirm)',
+                              validators=[InputRequired()])
 # ---------------------------------------------------------------------------------------
 
 # Login Class
@@ -40,4 +41,12 @@ class TaskForm(FlaskForm):
 
     title = TextField("Title", validators=[DataRequired()])
     task = TextAreaField("Task", validators=[DataRequired()])
+# ---------------------------------------------------------------------------------------
+
+# Add Photo Class -- in progress
+
+
+class PhotoForm(FlaskForm):
+
+    photo = ""
 # ---------------------------------------------------------------------------------------

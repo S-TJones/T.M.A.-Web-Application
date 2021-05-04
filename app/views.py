@@ -16,8 +16,6 @@ from app.models import *
 # Helper
 
 
-
-
 # Routes
 
 
@@ -41,7 +39,7 @@ def home():
                 comment = review_form.comment.data
                 rating = review_form.rating.data
                 photo = current_user.user_photo
-                
+
                 if rating > 5:
                     flash('Rating cannot be more than 5.', category='error')
                 elif rating < 1:
@@ -102,7 +100,7 @@ def signup():
             email = signup_form.email.data
             pass1 = signup_form.password1.data
             pass2 = signup_form.password2.data
-            photo = "plain-user.jpg" # Sets default photo
+            photo = "plain-user.jpg"  # Sets default photo
 
             user = User.query.filter_by(email=email).first()
 
@@ -190,14 +188,38 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-@app.route('/dashboard/')
+@app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
+    """Render the website's dashboard page."""
 
+    id = current_user.id
     photo = current_user.user_photo
 
-    """Render the website's dashboard page."""
-    return render_template('dashboard.html', photo=photo)
+    # Get all the Tasks and Reviews made
+    users_reviews = db.session.query(Review).filter(Review.uid == id).all()
+    users_tasks = db.session.query(Task).filter(Task.uid == id).all()
+
+    task_form = TaskForm()
+    if (request.method == 'POST') and (task_form.validate_on_submit()):
+
+        title = task_form.title.data
+        description = task_form.task.data
+
+        new_task = Task(id, title, description)
+
+        db.session.add(new_task)
+        db.session.commit()
+
+        flash('New Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
+
+    # # Get all the Tasks and Reviews made
+    # users_reviews = db.session.query(Review).filter_by(uid=id).all()
+    # users_tasks = db.session.query(Task).filter_by(uid=id).all()
+    print(users_reviews, users_tasks)
+
+    return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory
