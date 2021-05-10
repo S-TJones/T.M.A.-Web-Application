@@ -152,7 +152,8 @@
   font-weight: bold;
 }
 
-input {
+input,
+textarea {
   background-clip: padding-box;
   background-color: #f4f4f4;
   border: 1px solid rgba(123, 154, 186, 0.17);
@@ -172,7 +173,8 @@ input {
   -o-transition: all 0.3s ease-in-out;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border: solid 1px var(--complement-color-light);
   box-shadow: 0 0 5px var(--complement-color-light);
   outline: none;

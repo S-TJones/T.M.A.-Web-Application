@@ -2,6 +2,7 @@
 {% extends "base.html" %}
 
 {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/forms.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dash.css') }}">
 {% endblock %}
 
@@ -46,7 +47,9 @@
             <div class="items">
                 <div id="user-tasks">
                     <h3>All Tasks</h3>
+                    
                     {% for task in tasks %}
+                    <div class="test">{{ task }}</div>
                     <div class="single-review">
                         <p>{{ task.title }}</p>
                         <p>123</p>
@@ -56,9 +59,10 @@
                 </div>
                 <div id="user-reviews">
                     <h3>All Reviews</h3>
-                    {{ reviews }}
                     {% for review in reviews %}
-                    {{ review }}
+                    <div class="test">
+                        {{ review }}
+                    </div>
                     <div class="top-reviews">
                         
                         <div class="review-items">
