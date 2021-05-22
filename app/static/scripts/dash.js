@@ -23,7 +23,7 @@ function testTasks(all_tasks){
 
     for (const [index, obj] of Object.entries(all_tasks)) {
         console.log(index, obj);
-        var result = "<div class='single-review'><p>" + JSON.stringify(obj['title']) + "</p><p>" + JSON.stringify(obj['message']) + "</p></div>";
+        var result = "<div class='task'><div class='task-data'><p class='task-title'>" + obj['title'] + "</p><p class='task-body'>" + obj['message'] + "</p></div><div class='task-buttons'><button id='edit'>Edit</button><button id='delete'>Delete</button></div></div>";
 
         code += result;
     }
