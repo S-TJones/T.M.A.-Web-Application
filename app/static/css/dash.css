@@ -143,14 +143,14 @@ aside .open-close {
 } */
 
 /* Tab Styles & Functionality */
-.items div {
+.items > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20px;
   border-top: solid 1px #000;
 }
-.items div {
+/* .items div {
   display: none;
 }
 
@@ -164,7 +164,7 @@ aside .open-close {
 
 .items div:target ~ #default {
   display: none;
-}
+} */
 
 .test {
   display: flex;

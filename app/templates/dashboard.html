@@ -39,51 +39,27 @@
             <h1>User Dashboard</h1>
     
             <div class="tabs">
+                <script type="text/javascript"> 
+                    tasks = {{ tasks|tojson }} 
+                    reviews = {{ reviews|tojson }} 
+                </script>
+
                 <a href="#default">New Task</a>
-                <a href="#user-tasks">All Tasks</a>
+                <a href="#user-tasks" onclick="testTasks(tasks)">All Tasks</a>
                 <a href="#user-reviews">All Reviews</a>
             </div>
 
             <div class="items">
                 <div id="user-tasks">
                     <h3>All Tasks</h3>
-                    
-                    {% for task in tasks %}
-                    <div class="test">{{ task }}</div>
-                    <div class="single-review">
-                        <p>{{ task.title }}</p>
-                        <p>123</p>
-                        <p>{{ task.message }}</p>
-                    </div>
-                    {% endfor %}
+                    <div id="task-section"></div>
                 </div>
+
                 <div id="user-reviews">
                     <h3>All Reviews</h3>
-                    {% for review in reviews %}
-                    <div class="test">
-                        {{ review }}
-                    </div>
-                    <div class="top-reviews">
-                        
-                        <div class="review-items">
-                            <p class="name">No name</p>
-                            <p class="comment">
-                                {{ review.comment }}
-                            </p>
-                            
-                            <div class="ratings">
-                                {% for num in range( review.rating ) %}
-                                <i class="fas fa-star yellow-stars"></i>
-                                {% endfor %}
-        
-                                {% for num in range( 5 - review.rating ) %}
-                                <i class="fas fa-star no-stars"></i>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                    <div id="review-section"></div>
                 </div>
+                
                 <div id="default">
                     <form action="{{ url_for('dashboard') }}" method="POST">
                         {{ form.csrf_token }}

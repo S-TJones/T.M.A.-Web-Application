@@ -3,7 +3,7 @@ import os
 from app import app, db, login_manager
 
 from flask import render_template, request, redirect, url_for
-from flask import flash, session, abort
+from flask import flash, session, abort, jsonify, make_response
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.helpers import send_from_directory
 
@@ -217,9 +217,34 @@ def dashboard():
     # # Get all the Tasks and Reviews made
     # users_reviews = db.session.query(Review).filter_by(uid=id).all()
     # users_tasks = db.session.query(Task).filter_by(uid=id).all()
-    print(users_reviews, users_tasks)
+    # print(users_reviews, users_tasks)
 
-    return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
+    dash_tasks = list()
+    dash_reviews = list()
+
+    for reviews in users_reviews:
+        review = {
+            'id': reviews.id,
+            'username': reviews.user_name,
+            'comment': reviews.comment,
+            'rating': reviews.rating,
+            'photo': reviews.user_photo
+        }
+        dash_reviews.append(review)
+
+    for tasks in users_tasks:
+        task = {
+            'id': tasks.id,
+            'title': tasks.title,
+            'message': tasks.message
+        }
+        dash_tasks.append(task)
+
+    data = {}
+    # dash_tasks = jsonify(dash_tasks)
+    # dash_reviews = jsonify(dash_reviews)
+
+    return render_template('dashboard.html', photo=photo, tasks=dash_tasks, reviews=dash_reviews, form=task_form)
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory
