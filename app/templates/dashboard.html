@@ -39,9 +39,9 @@
             <h1>User Dashboard</h1>
     
             <div class="tabs">
-                <a href="#default">New Task</a>
-                <a href="#user-tasks">All Tasks</a>
-                <a href="#user-reviews">All Reviews</a>
+                <a href="#" onclick="getDefault()">New Task</a>
+                <a href="#" onclick="getTasks()">All Tasks</a>
+                <a href="#" onclick="getReviews()">All Reviews</a>
             </div>
 
             <div class="items">
@@ -49,24 +49,28 @@
                     <h3>All Tasks</h3>
                     
                     {% for task in tasks %}
-                    <div class="test">{{ task }}</div>
-                    <div class="single-review">
-                        <p>{{ task.title }}</p>
-                        <p>123</p>
-                        <p>{{ task.message }}</p>
+                    <div class='task'>
+                        <div class='task-data'>
+                            <p class='task-title'>
+                                {{ task.title }}
+                            </p>
+                            <p class='task-body'>
+                                {{ task.message }}
+                            </p>
+                        </div>
+                        <div class='task-buttons'>
+                            <button id='edit'>Edit</button>
+                            <button id='delete'>Delete</button>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
                 <div id="user-reviews">
                     <h3>All Reviews</h3>
                     {% for review in reviews %}
-                    <div class="test">
-                        {{ review }}
-                    </div>
                     <div class="top-reviews">
                         
                         <div class="review-items">
-                            <p class="name">No name</p>
                             <p class="comment">
                                 {{ review.comment }}
                             </p>
@@ -84,7 +88,7 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div id="default">
+                <div id="user-default">
                     <form action="{{ url_for('dashboard') }}" method="POST">
                         {{ form.csrf_token }}
                         
