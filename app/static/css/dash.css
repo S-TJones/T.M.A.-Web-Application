@@ -163,7 +163,9 @@ aside .open-close {
 } */
 
 #user-tasks,
-#user-reviews {
+#user-reviews,
+.task-buttons input,
+.cancel-edit {
   display: none;
 }
 
@@ -198,8 +200,8 @@ aside .open-close {
   align-items: center;
 }
 
-#edit,
-#delete {
+.edit,
+.delete {
   width: 100%;
   padding: 5px 10px;
   color: var(--white);
@@ -208,11 +210,11 @@ aside .open-close {
   cursor: pointer;
 }
 
-#edit {
+.edit {
   background-color: blue;
 }
 
-#delete {
+.delete {
   background-color: red;
 }
 
