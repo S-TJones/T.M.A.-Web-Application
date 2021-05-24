@@ -217,9 +217,64 @@ def dashboard():
     # # Get all the Tasks and Reviews made
     # users_reviews = db.session.query(Review).filter_by(uid=id).all()
     # users_tasks = db.session.query(Task).filter_by(uid=id).all()
-    print(users_reviews, users_tasks)
+    # print(users_reviews, users_tasks)
 
     return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
+
+
+@app.route('/dashboard/edit-task/', methods=['POST'])
+def edit_task():
+
+    if request.method == "POST":
+        # getting input id
+        id = request.form.get("task-delete")
+
+        specific_task = Task.query.get(id)
+
+        # Edit text here
+
+        flash('Edited Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard/delete-task/', methods=['POST'])
+def delete_task():
+
+    if request.method == "POST":
+        # getting input id
+        id = request.form.get("task-delete")
+
+        specific_task = Task.query.get(id)
+
+        if specific_task is None:
+            flash('Could not Delete Task.', 'danger')
+            return redirect(url_for('dashboard'))
+
+        db.session.delete(specific_task)
+        db.session.commit()
+
+        flash('Deleted Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard/delete-review/', methods=['POST'])
+def delete_review():
+
+    if request.method == "POST":
+        # getting input id
+        id = request.form.get("review-delete")
+
+        specific_review = Review.query.get(id)
+
+        if specific_review is None:
+            flash('Could not Delete Review.', 'danger')
+            return redirect(url_for('dashboard'))
+
+        db.session.delete(specific_review)
+        db.session.commit()
+
+        flash('Deleted Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory
