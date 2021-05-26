@@ -69,7 +69,12 @@ function editTask(button_id, task_message){
 function cancelEdit(button_id){
 
     // Make the Section visible
-    document.getElementById(cancel_base+button_id).style.display = "block";
+    document.getElementById("edit-form-"+button_id).style.display = "none";
+    document.getElementById(save_base+button_id).style.display = "none";
+    document.getElementById(form_base+button_id).style.display = "none";
+    document.getElementById(cancel_base+button_id).style.display = "none";
 
-    document.getElementById(delete_base+button_id).style.display = "none";
+    document.getElementById(edit_base+button_id).style.display = "block";
+    document.getElementById(text_base+button_id).style.display = "block";
+    document.getElementById(delete_base+button_id).style.display = "block";
 }

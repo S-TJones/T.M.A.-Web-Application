@@ -237,12 +237,10 @@ def edit_task():
         return redirect(url_for('dashboard'))
 
 
-@app.route('/dashboard/delete-task/', methods=['POST'])
-def delete_task():
+@app.route('/dashboard/delete-task/<id>', methods=['POST'])
+def delete_task(id):
 
     if request.method == "POST":
-        # getting input id
-        id = request.form.get("task-delete")
 
         specific_task = Task.query.get(id)
 
