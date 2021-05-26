@@ -165,7 +165,10 @@ aside .open-close {
 #user-tasks,
 #user-reviews,
 .task-buttons input,
-.cancel-edit {
+.cancel-edit,
+.save-edit,
+.display-form,
+.edit-form {
   display: none;
 }
 
@@ -200,8 +203,7 @@ aside .open-close {
   align-items: center;
 }
 
-.edit,
-.delete {
+.task button {
   width: 100%;
   padding: 5px 10px;
   color: var(--white);
@@ -210,11 +212,16 @@ aside .open-close {
   cursor: pointer;
 }
 
+.save-edit {
+  background-color: green;
+}
+
 .edit {
   background-color: blue;
 }
 
-.delete {
+.delete,
+.cancel-edit {
   background-color: red;
 }
 
