@@ -222,18 +222,21 @@ def dashboard():
     return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
 
 
-@app.route('/dashboard/edit-task/', methods=['POST'])
-def edit_task():
+@app.route('/dashboard/edit-task/<id>', methods=['POST'])
+def edit_task(id):
 
     if request.method == "POST":
-        # getting input id
-        id = request.form.get("task-delete")
 
         specific_task = Task.query.get(id)
 
         # Edit text here
+        text_area = "task-data-" + str(id)
+        new_message = request.form.get(text_area)
+        specific_task.message = new_message
 
-        flash('Edited Task added successfully.', 'success')
+        db.session.commit()
+
+        flash('Task edited successfully.', 'success')
         return redirect(url_for('dashboard'))
 
 

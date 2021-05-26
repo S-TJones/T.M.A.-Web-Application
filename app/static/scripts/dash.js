@@ -55,7 +55,7 @@ function editTask(button_id, task_message){
     // Make the Section visible
     document.getElementById("edit-form-"+button_id).style.display = "block";
     document.getElementById(save_base+button_id).style.display = "block";
-    document.getElementById(form_base+button_id).style.display = "block";
+    document.getElementById(textarea_base+button_id).style.display = "block";
     document.getElementById(cancel_base+button_id).style.display = "block";
 
     document.getElementById(edit_base+button_id).style.display = "none";
