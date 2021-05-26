@@ -143,35 +143,100 @@ aside .open-close {
 } */
 
 /* Tab Styles & Functionality */
-.items > div {
+.items {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  border-top: solid 1px #000;
 }
 /* .items div {
   display: none;
 }
-
 #default {
   display: block;
 }
-
 .items div:target {
   display: block;
 }
-
 .items div:target ~ #default {
   display: none;
 } */
 
-.test {
+#user-tasks,
+#user-reviews,
+.task-data textarea,
+.cancel-edit,
+.save-edit,
+.display-form,
+.edit-form {
+  display: none;
+}
+
+.task {
+  margin: 10px auto;
+  min-width: 400px;
+  max-width: 800px;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+
+  padding: 20px 10px;
+  border: solid 1px #000;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.task-data {
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  padding: 20px 0px;
+  padding-left: 10px;
+  margin-right: 20px;
+}
+
+.task-buttons {
+  border-left: solid 1px var(--black);
+  padding-left: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task button {
+  width: 100%;
+  padding: 5px 10px;
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-edit {
+  background-color: green;
+}
+
+.edit {
+  background-color: blue;
+}
+
+.delete,
+.cancel-edit {
+  background-color: red;
+}
+
+.task-title {
+  font-size: larger;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.task-body {
+  height: 50px;
+  overflow: auto;
 }
 
 label {

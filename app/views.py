@@ -219,32 +219,63 @@ def dashboard():
     # users_tasks = db.session.query(Task).filter_by(uid=id).all()
     # print(users_reviews, users_tasks)
 
-    dash_tasks = list()
-    dash_reviews = list()
+    return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
 
-    for reviews in users_reviews:
-        review = {
-            'id': reviews.id,
-            'username': reviews.user_name,
-            'comment': reviews.comment,
-            'rating': reviews.rating,
-            'photo': reviews.user_photo
-        }
-        dash_reviews.append(review)
 
-    for tasks in users_tasks:
-        task = {
-            'id': tasks.id,
-            'title': tasks.title,
-            'message': tasks.message
-        }
-        dash_tasks.append(task)
+@app.route('/dashboard/edit-task/<id>', methods=['POST'])
+def edit_task(id):
 
-    data = {}
-    # dash_tasks = jsonify(dash_tasks)
-    # dash_reviews = jsonify(dash_reviews)
+    if request.method == "POST":
 
-    return render_template('dashboard.html', photo=photo, tasks=dash_tasks, reviews=dash_reviews, form=task_form)
+        specific_task = Task.query.get(id)
+
+        # Edit text here
+        text_area = "task-data-" + str(id)
+        new_message = request.form.get(text_area)
+        specific_task.message = new_message
+
+        db.session.commit()
+
+        flash('Task edited successfully.', 'success')
+        return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard/delete-task/<id>', methods=['POST'])
+def delete_task(id):
+
+    if request.method == "POST":
+
+        specific_task = Task.query.get(id)
+
+        if specific_task is None:
+            flash('Could not Delete Task.', 'danger')
+            return redirect(url_for('dashboard'))
+
+        db.session.delete(specific_task)
+        db.session.commit()
+
+        flash('Deleted Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard/delete-review/', methods=['POST'])
+def delete_review():
+
+    if request.method == "POST":
+        # getting input id
+        id = request.form.get("review-delete")
+
+        specific_review = Review.query.get(id)
+
+        if specific_review is None:
+            flash('Could not Delete Review.', 'danger')
+            return redirect(url_for('dashboard'))
+
+        db.session.delete(specific_review)
+        db.session.commit()
+
+        flash('Deleted Task added successfully.', 'success')
+        return redirect(url_for('dashboard'))
 
 # Helper Function -----------------------------------
 # Python script for iterating over files in a specific directory
