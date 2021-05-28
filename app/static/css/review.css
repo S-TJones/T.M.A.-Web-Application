@@ -26,6 +26,7 @@
 .top-reviews {
   width: 300px;
   height: fit-content;
+  background-color: var(--white);
   border: solid 1px var(--complement-color-light);
   border-radius: 10px;
   padding: 10px;
