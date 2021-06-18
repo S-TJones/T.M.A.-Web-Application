@@ -222,10 +222,10 @@ def dashboard():
     return render_template('dashboard.html', photo=photo, tasks=users_tasks, reviews=users_reviews, form=task_form)
 
 
-@app.route('/dashboard/edit-task/<id>', methods=['POST'])
+@app.route('/dashboard/edit-task/<id>', methods=['POST', 'PUT'])
 def edit_task(id):
 
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "PUT":
 
         specific_task = Task.query.get(id)
 
@@ -240,10 +240,10 @@ def edit_task(id):
         return redirect(url_for('dashboard'))
 
 
-@app.route('/dashboard/delete-task/<id>', methods=['POST'])
+@app.route('/dashboard/delete-task/<id>', methods=['POST', 'DELETE'])
 def delete_task(id):
 
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "DELETE":
 
         specific_task = Task.query.get(id)
 
@@ -258,10 +258,10 @@ def delete_task(id):
         return redirect(url_for('dashboard'))
 
 
-@app.route('/dashboard/delete-review/', methods=['POST'])
+@app.route('/dashboard/delete-review/', methods=['POST', 'DELETE'])
 def delete_review():
 
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "DELETE":
         # getting input id
         id = request.form.get("review-delete")
 
